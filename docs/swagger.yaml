@@ -1,0 +1,125 @@
+definitions:
+  dto.NewTodoRequest:
+    properties:
+      done:
+        type: boolean
+      title:
+        type: string
+    type: object
+  dto.NewTodoResponse:
+    properties:
+      data: {}
+      message:
+        type: string
+      result:
+        type: string
+      status:
+        type: integer
+    type: object
+info:
+  contact: {}
+paths:
+  /todos:
+    get:
+      consumes:
+      - application/json
+      description: Get all todos
+      operationId: get-all-todo
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.NewTodoResponse'
+      tags:
+      - Todos
+    post:
+      consumes:
+      - application/json
+      description: Create a todo list
+      operationId: create-todo
+      parameters:
+      - description: Create a todo request body
+        in: body
+        name: Todo
+        required: true
+        schema:
+          $ref: '#/definitions/dto.NewTodoRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.NewTodoResponse'
+      tags:
+      - Todos
+  /todos/{todoId}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a todo list
+      operationId: delete-todo
+      parameters:
+      - description: ID of the todo
+        in: path
+        name: todoId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.NewTodoResponse'
+      tags:
+      - Todos
+    get:
+      consumes:
+      - application/json
+      description: Get todo
+      operationId: get-todo
+      parameters:
+      - description: ID of the todo
+        in: path
+        name: todoId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.NewTodoResponse'
+      tags:
+      - Todos
+    put:
+      consumes:
+      - application/json
+      description: Update a todo list
+      operationId: update-todo
+      parameters:
+      - description: ID of the todo
+        in: path
+        name: todoId
+        required: true
+        type: integer
+      - description: Update todo request body
+        in: body
+        name: Todo
+        required: true
+        schema:
+          $ref: '#/definitions/dto.NewTodoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.NewTodoResponse'
+      tags:
+      - Todos
+swagger: "2.0"
